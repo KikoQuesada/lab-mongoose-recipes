@@ -20,6 +20,7 @@ mongoose
     return self.connection.dropDatabase();
   })
   .then(() => {
+//ITERATION 2:
     const cubanRice = {
       title: 'Cuban Rice',
       level: 'Easy Peasy',
@@ -31,8 +32,19 @@ mongoose
       creator: 'Kiko',
     };
     Recipe.create(cubanRice)
-      .then(recipe => console.log(`The recipe ${recipe.title} was created`, recipe))
+      .then(recipe => console.log(`The recipe ${recipe.title} was created`))
       .catch(error => console.error(error));
+
+//ITERATION 3:
+      Recipe.insertMany(data)
+        .then(recipes =>{
+          recipes.forEach(recipe => {
+            console.log(`The recipe ${recipe.title} was created`)
+          })
+        })
+        .catch(error => console.error(error));
+
+        
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
