@@ -20,7 +20,19 @@ mongoose
     return self.connection.dropDatabase();
   })
   .then(() => {
-    // Run your code here, after you have insured that the connection was made
+    const cubanRice = {
+      title: 'Cuban Rice',
+      level: 'Easy Peasy',
+      ingredients: ['rice', 'fried tomato', 'eggs', 'banana'],
+      cuisine: 'Spanish',
+      dishType: 'main_course',
+      image: 'https://recetasdecocina.elmundo.es/wp-content/uploads/2016/11/receta-arroz-a-la-cubana.jpg',
+      duration: 20,
+      creator: 'Kiko',
+    };
+    Recipe.create(cubanRice)
+      .then(recipe => console.log(`The recipe ${recipe.title} was created`, recipe))
+      .catch(error => console.error(error));
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
